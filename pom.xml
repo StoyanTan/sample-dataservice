@@ -3,16 +3,43 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.airbnb.sample</groupId>
   <artifactId>sample-dataservice</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>sample-dataservice</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+    <dependency>
+    <groupId>org.hibernate.javax.persistence</groupId>
+    <artifactId>hibernate-jpa-2.1-api</artifactId>
+    <version>1.0.2.Final</version>
+</dependency>
+    
+    <dependency>
+    <groupId>javax.enterprise</groupId>
+    <artifactId>cdi-api</artifactId>
+    <version>2.0.SP1</version>
+    <scope>provided</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.mapstruct</groupId>
+    <artifactId>mapstruct</artifactId>
+    <version>1.3.0.Final</version>
+</dependency>
+
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>   
+    <version>5.3.2.Final</version>
+</dependency>
+    
   </dependencies>
 </project>
