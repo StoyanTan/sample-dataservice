@@ -10,4 +10,6 @@ The filter object itself is generic, which means that it could take any value fr
 
 # Further iterations
 
-It is possible to define a selector by ID for displaying a single incident including a twitter widget. The dataset has its origin in the twitter feed of Manila's traffic authority, so this would be the natural extension, plus all the data is already being loaded in the application, but not rendered in the Angular component
+It is possible to define a selector by ID for displaying a single incident including a twitter widget. The dataset has its origin in the twitter feed of Manila's traffic authority, so this would be the natural extension, plus all the data is already being loaded in the application, but not rendered in the Angular component.
+
+Another possibility is to aggregate the data with some additional dynamic data from a publicly available API (not done yet because it is mainly a frontend focused task). 
