@@ -4,6 +4,8 @@ A sample dataservice running on Wildfly 10 and using Resteasy and JPA/Hibernate.
 
 # Structure of the service layer
 
+![Architectural diagram] (https://github.com/StoyanTan/sample-dataservice/blob/master/arch_diagram.png)
+
 Right now the service definition is allowing for two REST calls, one that is fetching all the data (pagination is implemented on service level, but not in the Angular component) and one which is filtering the data according to a filter criteria.
 
 The filter object itself is generic, which means that it could take any value from the event handlers in the frontend and return a filtered result set. The initial idea is to filter by city once the incidents are clustered in the frontend and drawn as a d3-diagram.
