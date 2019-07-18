@@ -5,6 +5,11 @@ public class Filter {
 	private String filterCriteria;
 	
 	private String value;
+	
+	public Filter(String filterCriteria, String value){
+		this.filterCriteria = filterCriteria;
+		this.value = value;
+	}
 
 	public String getValue() {
 		return value;

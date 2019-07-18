@@ -15,9 +15,13 @@ public interface ITrafficService {
 
 	@GET
     @Path("/incidents")
-    public Response getAll() throws JsonProcessingException;
+    public Response getClusteringByCity() throws JsonProcessingException;
 	
 	@GET
 	@Path("/incidents/{city}")
-	public Response getByCity(@PathParam("city") String city)throws JsonProcessingException;
+	public Response getIncidentsByCity(@PathParam("city") String city)throws JsonProcessingException;
+	
+	@GET
+	@Path("/incidents/{id}")
+	public Response getIncidentsById(@PathParam("id") String id)throws JsonProcessingException;
 }
