@@ -6,9 +6,15 @@ A sample dataservice running on Wildfly 10 and using Resteasy and JPA/Hibernate.
 
 ![image](/arch_diagram.png)
 
-Right now the service definition is allowing for two REST calls, one that is fetching all the data (pagination is implemented on service level, but not in the Angular component) and one which is filtering the data according to a filter criteria.
+The service definition contains three REST calls, one of them is compound, meaning that it queries the DB twice and merges the results:
 
-The filter object itself is generic, which means that it could take any value from the event handlers in the frontend and return a filtered result set. The initial idea is to filter by city once the incidents are clustered in the frontend and drawn as a d3-diagram.
+1) The first is clustering all the incident data by city and returns city and count as key-value pairs.
+
+2) The second is returning all records for a selected city, setting it as a parameter in the filter structure. Pagination is implemented on the server-side.
+
+3) The third returns detailed data for a single record by ID
+
+The filter object itself is generic, which means that it could take different values from the event handlers in the frontend and return a filtered result set. In the current state it is set to filter by city when the incidents are clustered in the frontend and a city is selected and by ID when a concrete table row is clicked.
 
 # Data mappings
 
@@ -16,6 +22,4 @@ The first transformation is between the data model in the persistence layer and 
 
 # Further iterations
 
-It is possible to define a selector by ID for displaying a single incident including a twitter widget. The dataset has its origin in the twitter feed of Manila's traffic authority, so this would be the natural extension, plus all the data is already being loaded in the application, but not rendered in the Angular component.
-
-Another possibility is to aggregate the data with some additional dynamic data from a publicly available API (not done yet because it is mainly a frontend focused task). 
+A great possibility would be to aggregate the data from our dataset with some additional dynamic data from a publicly available API. Examples: weather conditions during the time of the incident, statistical data about these exact geo coordinates, Google maps integration
