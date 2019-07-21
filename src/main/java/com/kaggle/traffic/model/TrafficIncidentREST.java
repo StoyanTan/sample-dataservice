@@ -1,5 +1,10 @@
 package com.kaggle.traffic.model;
 
+/**
+ * A model for the REST response structure to be converted to JSON
+ * @author STOYAN
+ *
+ */
 public class TrafficIncidentREST {
 
 	private Integer uniqueId;

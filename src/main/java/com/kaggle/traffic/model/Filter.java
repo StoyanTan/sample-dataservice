@@ -1,5 +1,10 @@
 package com.kaggle.traffic.model;
 
+/**
+ * A generic filter structure to be integrated in the Hibernate query
+ * @author STOYAN
+ *
+ */
 public class Filter {
 
 	private String filterCriteria;

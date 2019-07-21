@@ -5,6 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Entity model for the incident
+ * @author STOYAN
+ *
+ */
 @Entity
 @Table(name="INCIDENT")
 public class TrafficIncident {

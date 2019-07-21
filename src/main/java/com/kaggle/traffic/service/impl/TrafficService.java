@@ -1,5 +1,6 @@
 package com.kaggle.traffic.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -35,26 +36,28 @@ public class TrafficService implements ITrafficService {
 		arrayNode.add(objNode);
 		String jsonResult = objectMapper.writeValueAsString(objNode);
         return Response.ok(jsonResult)
-        		.header("Access-Control-Allow-Origin", "*")
-        	      .header("Access-Control-Allow-Credentials", "true")
-        	      .header("Access-Control-Allow-Headers",
-        	        "origin, content-type, accept, authorization")
-        	      .header("Access-Control-Allow-Methods", 
-        	        "GET, POST, PUT, DELETE, OPTIONS, HEAD").build();
+        		.header("Access-Control-Allow-Origin", "*").build();
 	}
 
-	public Response getIncidentsByCity(String city) throws JsonProcessingException {
+	public Response getIncidentsByCity(String city, Integer page) throws JsonProcessingException {
 		Filter filter = new Filter("city", city);
-		List<TrafficIncidentREST> result = mapper.mapTraffic(dao.getTraffic(filter, 1, 50));
+		Integer pageSize = 50;
+		Long count = dao.getCount(filter);;
+		List<TrafficIncidentREST> result = new ArrayList<>();
+		if (page == null){
+			result = mapper.mapTraffic(dao.getTraffic(filter, 0, pageSize));
+		} else {
+			Integer offset = (page - 1) * pageSize;
+			
+			result = mapper.mapTraffic(dao.getTraffic(filter, offset, pageSize));
+		}
 		objectMapper.writerWithDefaultPrettyPrinter();
-		String jsonResult = objectMapper.writeValueAsString(result);
+		ObjectNode objNode = objectMapper.createObjectNode();
+		objNode.putPOJO("items", result);
+		objNode.put("count", count);
+		String jsonResult = objectMapper.writeValueAsString(objNode);
         return Response.ok(jsonResult)
-        		.header("Access-Control-Allow-Origin", "*")
-        	      .header("Access-Control-Allow-Credentials", "true")
-        	      .header("Access-Control-Allow-Headers",
-        	        "origin, content-type, accept, authorization")
-        	      .header("Access-Control-Allow-Methods", 
-        	        "GET, POST, PUT, DELETE, OPTIONS, HEAD").build();
+        		.header("Access-Control-Allow-Origin", "*").build();
 	}
 
 	@Override
@@ -64,12 +67,6 @@ public class TrafficService implements ITrafficService {
 		objectMapper.writerWithDefaultPrettyPrinter();
 		String jsonResult = objectMapper.writeValueAsString(result);
 		return Response.ok(jsonResult)
-        		.header("Access-Control-Allow-Origin", "*")
-        	      .header("Access-Control-Allow-Credentials", "true")
-        	      .header("Access-Control-Allow-Headers",
-        	        "origin, content-type, accept, authorization")
-        	      .header("Access-Control-Allow-Methods", 
-        	        "GET, POST, PUT, DELETE, OPTIONS, HEAD").build();
+        		.header("Access-Control-Allow-Origin", "*").build();
 	}
-
 }

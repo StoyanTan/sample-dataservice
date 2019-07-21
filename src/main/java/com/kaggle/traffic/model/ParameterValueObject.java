@@ -1,5 +1,10 @@
 package com.kaggle.traffic.model;
 
+/**
+ * Entity model for the clustering method
+ * @author STOYAN
+ *
+ */
 public class ParameterValueObject {
 
 	private String parameter;

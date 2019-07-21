@@ -9,6 +9,11 @@ import org.mapstruct.Mappings;
 import com.kaggle.traffic.model.TrafficIncidentREST;
 import com.kaggle.traffic.model.TrafficIncident;
 
+/**
+ * A MapStruct mapping class, transforming the DB result to the REST structure
+ * @author STOYAN
+ *
+ */
 @Mapper
 public interface TrafficMapper {
 

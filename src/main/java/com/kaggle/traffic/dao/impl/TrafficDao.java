@@ -31,6 +31,7 @@ public class TrafficDao implements ITrafficDao {
     EntityManager em = TrafficDao.getEntityManager();
 	CriteriaBuilder cb = em.getCriteriaBuilder(); 
 	
+	@Override
     public List<ParameterValueObject> getClustering(Filter filter) {
     	
     	CriteriaQuery<Tuple> query = cb.createTupleQuery();
@@ -53,6 +54,7 @@ public class TrafficDao implements ITrafficDao {
         	return objectResult;
     }
     
+    @Override
 	public List<TrafficIncident> getTraffic(Filter filter, int offset, int pageSize) {
  
 		CriteriaQuery<TrafficIncident> cq = cb.createQuery(TrafficIncident.class);
@@ -80,5 +82,20 @@ public class TrafficDao implements ITrafficDao {
 		}
 		return em.createQuery(cq).getSingleResult();
 		
+	}
+
+	@Override
+	public Long getCount(Filter filter) {
+		CriteriaQuery<TrafficIncident> cq = cb.createQuery(TrafficIncident.class);
+		Root<TrafficIncident> traffic = cq.from(TrafficIncident.class);
+		
+		if(filter == null || filter.getFilterCriteria() == null) {
+			return null;
+		} else {
+			cq.select(traffic)
+			.where(cb.equal(traffic.get(filter.getFilterCriteria()), filter.getValue()));
+			
+			return Long.valueOf(em.createQuery(cq).getResultList().size());
+		}
 	}
 }
