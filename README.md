@@ -6,7 +6,7 @@ A sample dataservice running on Wildfly 10 and using Resteasy and JPA/Hibernate.
 
 ![image](/arch_diagram.png)
 
-The service definition contains three REST calls, one of them is compound, meaning that it queries the DB twice and merges the results:
+The service definition contains three REST calls, one of them is orchestrating, meaning that it queries the DB twice and merges the results:
 
 1) The first is clustering all the incident data by city and returns city and count as key-value pairs.
 
